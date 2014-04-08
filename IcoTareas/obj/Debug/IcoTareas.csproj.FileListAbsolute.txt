@@ -1,0 +1,5 @@
+c:\users\panky\documents\visual studio 2012\Projects\IcoTareas\IcoTareas\bin\IcoTareas.dll
+c:\users\panky\documents\visual studio 2012\Projects\IcoTareas\IcoTareas\bin\IcoTareas.pdb
+c:\users\panky\documents\visual studio 2012\Projects\IcoTareas\IcoTareas\obj\Debug\IcoTareas.csprojResolveAssemblyReference.cache
+c:\users\panky\documents\visual studio 2012\Projects\IcoTareas\IcoTareas\obj\Debug\IcoTareas.dll
+c:\users\panky\documents\visual studio 2012\Projects\IcoTareas\IcoTareas\obj\Debug\IcoTareas.pdb
