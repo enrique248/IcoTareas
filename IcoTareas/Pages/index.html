@@ -44,7 +44,7 @@
         <div data-role="content">
             <label for="fname">Materia:</label>
             <input type="text" name="fmaterias" id="fMaterias" placeholder="Materia...">
-            <a href="javascript:onInsert();" data-role="button" data-rel="dialog">Guardar</a>
+            <a href="javascript:SQL(insertTask);" data-role="button" data-rel="dialog">Guardar</a>
             
         </div>
 
@@ -67,6 +67,7 @@
         <div data-role="content">
        <ul data-role="listview" id="_materias"  data-inset="true" data-filter="true" data-filter-placeholder="Busqueda de Materias...">
 		
+
 	  </ul>
 
         </div>
@@ -77,6 +78,39 @@
         <h1>IcoSoft</h1>
         </div>
         </div>
+
+
+
+    <div data-role="page" id="DetalleMateria">
+
+        <div data-role="header">
+      <h1>Consulta de Materias</h1>
+     </div>
+
+        <br />
+      
+        <div data-role="content">
+     <label for="fname">Id:</label>
+            <input type="text" name="fmaterias" id="idMateria">
+
+            <label for="fname">Materia:</label>
+            <input type="text" name="fmaterias" id="NombreMateria" >
+
+            <a href="#ConsultaMaterias" id="btnGuardar" data-role="button" data-icon="plus" data-inline="true" style="float:right;">Grabar</a>
+            <a href="javascript:onInsert();" data-role="button" data-rel="dialog">Eliminar</a>
+
+        </div>
+
+        <br />
+
+        <div data-role="footer">
+        <h1>IcoSoft</h1>
+        </div>
+        </div>
+
+
+
+
 
 </body>
 

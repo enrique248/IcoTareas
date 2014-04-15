@@ -1,6 +1,9 @@
 ﻿
 
-
+var Materia = {
+    id: null,
+    Nombre: null
+}
 
 
 db = null;
@@ -17,29 +20,10 @@ function ConsultarMaterias() {
     $.mobile.changePage('#ConsultaMaterias', { transition: 'pop', role: 'dialog' });
 }
 
-function onInsert()
+function SQL(Query)
 {
-    db.transaction(insertTask, ErrorDB);
+    db.transaction(Query, ErrorDB);
 }
-
-function onSelectt(){
-    db.transaction(SelectTask,ErrorDB);
-}
-
-function SelectTask(tx){
-    tx.executeSql('SELECT * FROM MATERIAS',[], querySuccess, ErrorDB);
-}
-
-function querySuccess(tx,result){
-    $('#_materias').empty();
-    for (var i=0; i<result.rows.length;i++) {
-        $('#_materias').append('<li><a  href="javascript:DetalleMateria(' + result.rows.item(i).id + ');" data-rel="dialog">' + result.rows.item(i).materia + '</a></li>').listview('refresh');
-    }
-    }
-
-function DetalleMateria(idMateria)
-
-    SELECT * FROM MATERIAS where id = idMateria 
 
 function insertTask(tx) {
     tx.executeSql('CREATE TABLE IF NOT EXISTS MATERIAS (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, materia)');
@@ -49,8 +33,35 @@ function insertTask(tx) {
     tx.executeSql('INSERT INTO MATERIAS (materia) VALUES("' + _materia + '")');
 }
 
+function UpdateMateria(tx) {
+    tx.executeSql('UPDATE prueba.MATERIAS SET materia=' + Materia.Nombre + ' WHERE id=' + Materia.id + '');
+}
+
 function ErrorDB(error) {
     alert("Error: " + error);
+}
+
+
+function SelectTask(tx){
+    tx.executeSql('SELECT * FROM MATERIAS',[], querySuccess, ErrorDB);
+}
+
+function querySuccess(tx,result){
+    $('#_materias').empty();
+    for (var i=0; i<result.rows.length;i++) {
+        $('#_materias').append('<li><a  href="javascript:DetalleMateria(' + result.rows.item(i).id + ',\'' + result.rows.item(i).materia + '\');" data-rel="dialog">' + result.rows.item(i).materia + '</a></li>').listview('refresh');
+    }
+    }
+
+function DetalleMateria(idMateria, NombreMateria)
+{
+    Materia.id = idMateria;
+    Materia.Nombre = NombreMateria;
+
+
+    $.mobile.changePage('#DetalleMateria', { transition: 'pop', role: 'dialog' });
+
+    
 }
 
 
@@ -59,7 +70,7 @@ function ErrorDB(error) {
 $(document).on("pagebeforeshow", "#ConsultaMaterias",
 
             function () {
-                onSelectt();
+                SQL(SelectTask);
 
             });
 
@@ -70,4 +81,23 @@ $(document).on("pagebeforeshow", "#Materias",
         $("#fMaterias").text("");
 
     });
+
+
+
+// inicia pagina DetalleMateria
+$(document).on("pagebeforeshow", "#DetalleMateria",
+
+            function () {
+               $('#idMateria').val(Materia.id);
+               $('#NombreMateria').val(Materia.Nombre);
+
+               $("#btnGuardar").click(function (event) {
+
+                   //UPDATE TABLA MATERIAS
+                   SQL(UpdateMateria);
+
+               });
+
+
+            });
   
