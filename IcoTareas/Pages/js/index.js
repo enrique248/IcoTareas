@@ -33,11 +33,13 @@ function SelectTask(tx){
 function querySuccess(tx,result){
     $('#_materias').empty();
     for (var i=0; i<result.rows.length;i++) {
-        $('#_materias').append('<li><a  href="javascript:ConsultaMaterias(' + result.rows.item(i).id + ');" data-rel="dialog">' + result.rows.item(i).materia + '</a></li>').listview('refresh');
+        $('#_materias').append('<li><a  href="javascript:DetalleMateria(' + result.rows.item(i).id + ');" data-rel="dialog">' + result.rows.item(i).materia + '</a></li>').listview('refresh');
     }
     }
 
-    
+function DetalleMateria(idMateria)
+
+    SELECT * FROM MATERIAS where id = idMateria 
 
 function insertTask(tx) {
     tx.executeSql('CREATE TABLE IF NOT EXISTS MATERIAS (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, materia)');
